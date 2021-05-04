@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  app:
+    image: node:16-alpine
+    command: sh -c "yarn start"
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - ./:/app
+  web:
+    image: nginx
+    volumes:
+      - ./build:/usr/share/nginx/html
+    ports:
+      - "8080:80"
